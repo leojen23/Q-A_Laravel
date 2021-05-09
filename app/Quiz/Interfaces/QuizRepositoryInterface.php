@@ -3,5 +3,5 @@
 
 interface QuizRepositoryInterface {
 
-    public function fetch();
+    public function fetch():array;
 }

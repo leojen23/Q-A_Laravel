@@ -3,5 +3,5 @@
 
 interface QuestionRepositoryInterface {
 
-    public function create(array $data);
+    public function createAndSync(array $question, array $answers);
 }
