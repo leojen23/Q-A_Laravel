@@ -88,10 +88,17 @@ class Question{
 
     protected function answersToArray():array
     {
-      	$answers = [];
-        foreach($this->answers as $a)
-          $answers[] = $a->toArray();
-      	return $answers;
+        $answers = [];
+
+        foreach($this->answers as $a) {
+            if (is_array($a)) {
+                $answers[] = $a;
+            } else {
+                $answers[] = $a->toArray();
+            }
+        }
+
+        return $answers;
     }
 
     public function render(){

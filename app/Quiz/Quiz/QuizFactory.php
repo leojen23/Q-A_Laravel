@@ -1,5 +1,6 @@
 <?php namespace App\Quiz\Quiz;
 
+use App\Quiz\Interfaces\QuizRepositoryInterface;
 use App\Quiz\Question\Question;
 use App\Repositories\EloquentRepositories\QuestionRepository;
 use App\Repositories\FileRepositories\FileQuizRepository;
@@ -7,23 +8,20 @@ use App\Repositories\FileRepositories\FileQuizRepository;
 class QuizFactory {
 
     protected QuestionRepository $questionRepository;
-    protected FileQuizRepository $fileQuizRepository;
+    protected QuizRepositoryInterface $quizRepository;
 
-    public function __construct()
+    public function __construct(QuizRepositoryInterface $quizRepository)
     {
         $this->questionRepository = new QuestionRepository();
-        $this->fileQuizRepository = new FileQuizRepository();
+        $this->quizRepository = $quizRepository;
     }
-    protected function create(){
-        $preparedQuestions = $this->fileQuizRepository->fetch();
-        // foreach ($preparedQuestions as $question){
-           
-        //     return $this->questionRepository->createAndSync($question, $question['answers']);
-        // }
+    protected function createQuiz():Quiz{
+        $preparedQuestions = $this->quizRepository->fetch();
+        return new Quiz($preparedQuestions, $this->questionRepository);
     }
     //il faut ici instancier un new quiz(avec question et answer)
     
-    public function get(){
-        return $this->create();
+    public function getQuiz():Quiz{
+        return $this->createQuiz();
     }
 }

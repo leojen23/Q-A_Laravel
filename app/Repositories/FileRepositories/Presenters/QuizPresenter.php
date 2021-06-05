@@ -2,15 +2,15 @@
 
 class QuizPresenter
 {
-    public function present($data):array
+    public function present($question):array
     {
+        // var_dump($question);
         return [
-            'label' => $data->label,
-            'type' => $data->type,
-            'answers' => $this->prepareAnswersArray($data->data)
+            'label' => $question['data']['label'],
+            'type' => $question['type'],
+            'answers' => $this->prepareAnswersArray($question['data'])
         ];
     }
-
     /**
      * @param $data
      * @return array
