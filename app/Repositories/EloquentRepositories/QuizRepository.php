@@ -16,5 +16,5 @@ class QuizRepository implements QuizRepositoryInterface
     public function fetch():array {
         return [];
     }
-
+//recuperer data depuis bdd et les envoyers sur la factory et sortir un objet
 }

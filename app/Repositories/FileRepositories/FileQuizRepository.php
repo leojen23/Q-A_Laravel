@@ -1,15 +1,18 @@
 <?php namespace App\Repositories\FileRepositories;
 
+
 use App\Repositories\FileRepositories\Presenters\QuizAdapter;
 use App\Quiz\Interfaces\QuizRepositoryInterface;
+use App\Quiz\Question\Question;
+use App\Repositories\EloquentRepositories\QuestionRepository;
 use App\Repositories\FileRepositories\Presenters\QuizPresenter;
 
-class QuizRepository implements QuizRepositoryInterface
+class FileQuizRepository implements QuizRepositoryInterface
 {
     protected string $file;
     protected $presenter;
 
-    public function __construct($file = 'questions.json')
+    public function __construct($file = '../questions.json')
     {
         if(!file_exists($file))
             throw new \Exception('file does not exists');
@@ -19,9 +22,15 @@ class QuizRepository implements QuizRepositoryInterface
 
     public function fetch():array{
         $questions = json_decode(file_get_contents($this->file, true), true);
-      	$preparedQuestions = [];
-      	foreach($questions as $q)
-	        $preparedQuestions[] = $this->presenter->present($content);
+        $preparedQuestions = [];
+        foreach($questions as $question)
+        // dump($question);
+        // die;
+        //$questionRepository = new QuestionRepository();
+        //$questionObject = new Question($question, $questionRepository);
+        
+	    $preparedQuestions[] = $this->presenter->present($question);
+        
       	return $preparedQuestions;
     }
 

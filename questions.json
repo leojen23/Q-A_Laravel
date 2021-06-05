@@ -1,0 +1,8 @@
+[
+    {"type":"text","data":{"label":"De quelle couleur est le soleil","answer":"jaune"}},
+
+    
+    {"type":"checkbox","data":{"label":"Quels sont les deux plus hauts sommets du syst\u00e8me solaire","values":["Olympus Mons - Mars","Cr\u00eate \u00e9quatoriale - Japet","Everest","Mont des Avaloirs"],"answers":["Olympus Mons","Cr\u00eate \u00e9quatoriale"]}},
+    
+    
+    {"type":"radio","data":{"label":"Quelle est le plus gros satellite du syst\u00e8me solaire","values":["La Lune","Titan","ganym\u00e8de","ob\u00e9ron"],"answer":["Ganym\u00e8de"]}}]

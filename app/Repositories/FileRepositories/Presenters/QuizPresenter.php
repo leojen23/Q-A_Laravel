@@ -24,7 +24,6 @@ class QuizPresenter
         }
     }
 
-
     /**
      * @param $data
      * @param $values
