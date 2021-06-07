@@ -1,20 +1,14 @@
 <?php
 
-use App\Models\Answer;
-use App\Quiz\Interfaces\IFactory;
+namespace App\Quiz\Answer;
 
-class AnwserFactory implements IFactory{
 
-    protected function create(){
-        $label= ['bla'];
-        $isValid = true;
-        $id=5;
+use App\Quiz\Answer\Factories\AnswerFactoryInterface;
+use App\Quiz\Answer\Type\AnswerInterface;
 
-        return new Answer($label, $isValid, $id);
-        
-    }
-    
-    public function get(){
-        return $this->create();
-    }
+abstract class AnswerFactory implements AnswerFactoryInterface{
+
+    abstract public function getAnswer():AnswerInterface;
+    abstract protected function createAnswer($label,$is_valid,$id):AnswerInterface;
+
 }

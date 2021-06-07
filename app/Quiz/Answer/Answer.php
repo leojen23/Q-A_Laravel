@@ -1,6 +1,8 @@
 <?php namespace App\Quiz\Answer;
 
-abstract class Answer{
+use App\Quiz\Answer\Type\AnswerInterface;
+
+abstract class Answer implements AnswerInterface{
 
 
     protected $label = '';

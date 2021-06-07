@@ -25,7 +25,6 @@ class Quiz
             $question->save();
         }
     }
-  
     public function getRandomQuestion(){
        return array_rand($this->preparedQuestions, 1);
       // $questionRepository->fetch();
