@@ -17,9 +17,15 @@ class Question{
      */
     public function __construct($question, $repository)
     {
-        $this->answers  = $question['answers'];
-        $this->type     = $question['type'];
-        $this->label    = $question['label'];
+        if (is_array($question)){
+            $this->answers  = $question['answers'];
+            $this->type     = $question['type'];
+            $this->label    = $question['label'];
+        } else {
+            $this->answers  = $question->answers;
+            $this->type     = $question->type;
+            $this->label    = $question->label;
+        }
         $this->repository  = $repository;
     }
 

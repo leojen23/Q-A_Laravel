@@ -12,7 +12,7 @@ class FileQuizRepository implements QuizRepositoryInterface
     protected string $file;
     protected $presenter;
 
-    public function __construct($file = '../questions.json')
+    public function __construct($file = './questions.json')
     {
         if(!file_exists($file))
             throw new \Exception('file does not exists');

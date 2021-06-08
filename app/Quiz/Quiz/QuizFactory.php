@@ -27,7 +27,6 @@ class QuizFactory {
         // die;
         foreach($preparedQuestions as $preparedQuestion){
 
-
             //echo '<pre>' . var_export($preparedQuestion['answers'], true) . '</pre>';
             $answers = [];
 
@@ -46,7 +45,7 @@ class QuizFactory {
         }
         
         //echo '<pre>' . var_export($quizQuestions, true) . '</pre>';
-        echo '<pre>' . var_export(new Quiz($quizQuestions, $this->questionRepository), true) . '</pre>';
+        //echo '<pre>' . var_export(new Quiz($quizQuestions, $this->questionRepository), true) . '</pre>';
         return new Quiz($quizQuestions, $this->questionRepository);
     }
     //il faut ici instancier un new quiz(avec question et answer)
