@@ -1,12 +1,13 @@
 <?php namespace App\Quiz\Question;
 
+use App\Quiz\Answer\Answer;
 use App\Quiz\Interfaces\QuestionRepositoryInterface;
 use Illuminate\Support\Facades\App;
 
 class Question{
 
-    protected $type    = '';
-    protected $label   = '';
+    protected string $type    = '';
+    protected string $label   = '';
     protected $answers = [];
     protected QuestionRepositoryInterface $repository ;
 

@@ -19,15 +19,20 @@ class QuestionController extends Controller
         quiz factory qui va recreer un new quiz. On ajoute dans le controller
         une méthode displayRandom pour l'affichage.*/
 
+        // $answer = [
+        //     'label' => 'this is the answer',
+        //     'is_valid' => 1,
+        // ];
 
-        $director = new AnswerFactoryDirector();
-        $radioFactory = $director->getAnswerFactory('checkbox');
-        var_dump($radioFactory->getAnswer());
+        // $director = new AnswerFactoryDirector($answer);
+        // $radioFactory = $director->getAnswerFactory('text');
+        // var_dump($radioFactory->getAnswer());
 
 
-        // $factory = new QuizFactory(new FileQuizRepository());
 
-        // $factory->getQuiz();
+        $factory = new QuizFactory(new FileQuizRepository());
+
+        $factory->getQuiz();
 
 
 

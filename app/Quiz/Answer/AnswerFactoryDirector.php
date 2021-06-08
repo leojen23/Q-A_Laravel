@@ -9,22 +9,27 @@ use App\Quiz\Answer\Factories\AnswerTextFactory;
 class AnswerFactoryDirector
 {
     
+    protected Array $answer;
     //determine quelle type de answer factory à instancier
+    public function __construct($answer)
+    {
+      $this->answer= $answer;
+    }
 
     public function getAnswerFactory($type):AnswerFactoryInterface
     {
         switch ($type) {
             case 'radio':
-                return new AnswerRadioFactory;
+                return new AnswerRadioFactory($this->answer);
                 break;
             case 'text':
-                return new AnswerTextFactory;
+                return new AnswerTextFactory($this->answer);
                 break;
             case 'checkbox':
-                return new AnswerCheckboxFactory;
+                return new AnswerCheckboxFactory($this->answer);
                 break;
             default:
-                return new AnswerTextFactory;
+                return new AnswerTextFactory($this->answer);
                 break;
         }
 
