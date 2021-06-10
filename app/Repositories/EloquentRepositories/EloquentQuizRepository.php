@@ -20,14 +20,11 @@ class EloquentQuizRepository implements QuizRepositoryInterface
                         ->select('questions.label AS questionLabel', 
                                 'questions.type AS questionType', 
                                 'answers.label AS answerLabel',
-                                'answers.is_valid')
+                                'answers.is_valid',
+                                'answers.id AS id')
                         ->get();
 
-        $preparedQuestions = [];  
-
-        foreach ($questions as $question) {
-            $preparedQuestions[] = $this->presenter->present($question);
-        }
+        $preparedQuestions = $this->presenter->present($questions);
         
         return $preparedQuestions;
     }

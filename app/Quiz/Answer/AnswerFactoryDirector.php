@@ -8,7 +8,7 @@ use App\Quiz\Answer\Factories\AnswerTextFactory;
 class AnswerFactoryDirector
 {
 
-    public function getAnswerFactory($answer, $type):AnswerFactoryInterface
+    public function getAnswerFactory(array $answer, string $type):AnswerFactoryInterface
     {
         switch ($type) {
             case 'radio':
