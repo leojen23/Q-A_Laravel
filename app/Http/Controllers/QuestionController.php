@@ -16,7 +16,10 @@ class QuestionController extends Controller
         //créer le quizz
         $quiz = $quizFactory->getQuiz();
 
-        dump($quiz);
+        $randomQuestion = $quiz->getRandomQuestion();
+
+        return view('question', ['questionLabel' => $randomQuestion->render(),
+                                'answers' =>  $randomQuestion->getAnswers()]);
 
     }
 

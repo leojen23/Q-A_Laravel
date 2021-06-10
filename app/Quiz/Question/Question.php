@@ -102,7 +102,8 @@ class Question{
         return $answers;
     }
 
-    public function render(){
+    public function render() {
+        return $this->label;
     }
 }
 

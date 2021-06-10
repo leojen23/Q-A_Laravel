@@ -3,10 +3,6 @@
 namespace App\Quiz\Quiz;
 
 use App\Quiz\Interfaces\QuestionRepositoryInterface;
-use App\Quiz\Question\Question;
-use \App\Quizz\Question\RepositoryInterface;
-use App\Repositories\EloquentRepositories\QuestionRepository;
-use App\Repositories\EloquentRepositories\QuizRepository;
 
 class Quiz
 {
