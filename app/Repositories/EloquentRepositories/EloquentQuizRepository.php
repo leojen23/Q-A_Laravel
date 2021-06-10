@@ -17,13 +17,13 @@ class EloquentQuizRepository implements QuizRepositoryInterface
     public function fetch():array 
     {
         $questions = DB::table('questions')
-        ->join('answers', 'questions.id', '=', 'question_id')
-        ->select('questions.label AS questionLabel', 
-                'questions.type AS questionType', 
-                'answers.label AS answerLabel',
-                'answers.is_valid',
-                'answers.id AS id')
-        ->get();
+                        ->join('answers', 'questions.id', '=', 'question_id')
+                        ->select('questions.label AS questionLabel', 
+                                'questions.type AS questionType', 
+                                'answers.label AS answerLabel',
+                                'answers.is_valid',
+                                'answers.id AS id')
+                        ->get();
 
         $preparedQuestions = $this->presenter->present($questions);
         

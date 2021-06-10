@@ -30,52 +30,26 @@ class QuizFactory {
 
         // $repoEloquent = new EloquentQuizRepository();
         // $questionsEloquent = $repoEloquent->fetch();
-        // dump($questionsEloquent);
         // die();
 
         $preparedQuestions = $this->quizRepository->fetch();
         
         $quizQuestions = [];
 
-        //traitement différent car FileRepo renvoie le quizz groupé par question
-        //alors que EloquentRepo renvoie réponse par réponse
-        if (get_class($this->quizRepository) === FileQuizRepository::class) {
+        foreach($preparedQuestions as $preparedQuestion) {
 
-            foreach($preparedQuestions as $preparedQuestion) {
-    
-                $answers = [];
-                
-                foreach($preparedQuestion['answers'] as $answer) {
-                    $director = new AnswerFactoryDirector();
-                    $AnswerFactory = $director->getAnswerFactory($answer, $preparedQuestion['type']);
-                    $answers []= $AnswerFactory->getAnswer();
-                }
-    
-                $preparedQuestion['answers'] = $answers;
-                $quizQuestions [] = new Question($preparedQuestion, $this->questionRepository);
+            $answers = [];
+            
+            foreach($preparedQuestion['answers'] as $answer) {
+                $director = new AnswerFactoryDirector();
+                $AnswerFactory = $director->getAnswerFactory($answer, $preparedQuestion['type']);
+                $answers []= $AnswerFactory->getAnswer();
             }
 
-        } elseif (get_class($this->quizRepository) === EloquentQuizRepository::class) {
-
-            foreach($preparedQuestions as $preparedQuestion) {
-    
-                $answers = [];
-                
-                foreach($preparedQuestion['answers'] as $answer) {
-                    
-                    $director = new AnswerFactoryDirector();
-                    $AnswerFactory = $director->getAnswerFactory($answer, $preparedQuestion['type']);
-                    $answers []= $AnswerFactory->getAnswer();
-                }
-    
-                $preparedQuestion['answers'] = $answers;
-                $quizQuestions [] = new Question($preparedQuestion, $this->questionRepository);
-            }
-
+            $preparedQuestion['answers'] = $answers;
+            $quizQuestions [] = new Question($preparedQuestion, $this->questionRepository);
         }
 
-        
-        // echo '<pre>' . var_export(new Quiz($quizQuestions, $this->questionRepository), true) . '</pre>';
         return new Quiz($quizQuestions, $this->questionRepository);
     }
     
