@@ -17,10 +17,18 @@ class QuestionController extends Controller
         $quiz = $quizFactory->getQuiz();
 
         dump($quiz);
+        $randomQuestion = $quiz->getRandomQuestion();
+
+        return view('question', [
+            'questionLabel' => $randomQuestion->render(),
+            'answers' => $randomQuestion->getAnswers()
+            ]);
 
     }
 
-    public function displayRandom() {}
+    public function displayRandom() {
+        
+    }
 }
     
 

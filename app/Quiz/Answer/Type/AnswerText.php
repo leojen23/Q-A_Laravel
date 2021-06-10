@@ -4,6 +4,8 @@ use App\Quiz\Answer\Answer;
 
 class AnswerText extends Answer{
     
-    public function render(){}
+    public function render(){
+        return $this->label;
+    }
 
 }

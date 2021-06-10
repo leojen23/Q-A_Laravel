@@ -109,6 +109,7 @@ class Question{
     }
 
     public function render(){
+        return $this->label;
     }
 }
 
