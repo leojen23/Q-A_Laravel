@@ -8,18 +8,20 @@ use App\Quiz\Answer\Type\AnswerInterface;
 
 class AnswerCheckboxFactory extends AnswerFactory implements AnswerFactoryInterface {
     
-    protected Array $answer;
-    //determine quelle type de answer factory à instancier
+    protected array $answer;
+
     public function __construct($answer)
     {
       $this->answer= $answer;
     }
-    protected function createAnswer():AnswerInterface{
-        
+
+    protected function createAnswer():AnswerInterface
+    {
         return new AnswerCheckbox($this->answer);
     }
-    public function getAnswer():AnswerInterface{
-        var_dump('i am a Checkbox factory');
+
+    public function getAnswer():AnswerInterface
+    {
         return $this->createAnswer();
     }
 }

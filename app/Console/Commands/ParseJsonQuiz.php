@@ -42,12 +42,10 @@ class ParseJsonQuiz extends Command
     {
        /* return 0;*/
         //1 ------ instancier la quiz factory (Afin de créer et gérer le quiz, celle-ci aura besoin de, File QuizRepository, QuestionRepository.)
-        
         $factory = new QuizFactory(new FileQuizRepository());
         //2 ------ Créer le quiz, on récupére un tableau avec questions & réponses 
         $quiz = $factory->getQuiz();
         //3 ------ appeler la fonction save() de quiz pour enregistrer en bdd
         $quiz->save();
-        
     }
 }
