@@ -10,23 +10,28 @@ use App\Repositories\EloquentRepositories\QuizRepository;
 
 class Quiz
 {
-    protected array $preparedQuestions = [];
+    protected array $questions = [];
     protected QuestionRepositoryInterface $questionRepository;
   
-    public function __construct(array $preparedQuestions, QuestionRepositoryInterface $questionRepository)
+    public function __construct(array $questions, QuestionRepositoryInterface $questionRepository)
     {
-        $this->preparedQuestions = $preparedQuestions;
+        $this->questions = $questions;
         $this->questionRepository = $questionRepository;
     }
 
-    public function save():void{
-        foreach ($this->preparedQuestions as $preparedQuestion) {
-            $question = new Question($preparedQuestion, $this->questionRepository);
+    public function save():void
+    {
+        foreach ($this->questions as $question) {
+            // normalement pas besoin de cette ligne, car quand les questions arrivent
+            // depuis la factory, elles sont déjà instanciées en objet Question
+            // $question = new Question($preparedQuestion, $this->questionRepository);
             $question->save();
         }
     }
-    public function getRandomQuestion(){
-       return array_rand($this->preparedQuestions, 1);
-      // $questionRepository->fetch();
+
+    public function getRandomQuestion()
+    {
+       $randomIndex = array_rand($this->questions, 1);
+       return $this->questions[$randomIndex];
     }
 }

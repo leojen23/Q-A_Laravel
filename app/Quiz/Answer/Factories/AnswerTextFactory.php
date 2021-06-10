@@ -9,16 +9,19 @@ use App\Quiz\Answer\Type\AnswerText;
 class AnswerTextFactory extends AnswerFactory implements AnswerFactoryInterface {
     
     protected Array $answer;
-    //determine quelle type de answer factory à instancier
+
     public function __construct($answer)
     {
       $this->answer= $answer;
     }
-    protected function createAnswer():AnswerInterface{
+
+    protected function createAnswer():AnswerInterface
+    {
         return new AnswerText($this->answer);
     }
-    public function getAnswer():AnswerInterface{
-        var_dump('i am a Text factory');
+
+    public function getAnswer():AnswerInterface
+    {
         return $this->createAnswer();
     }
 }
