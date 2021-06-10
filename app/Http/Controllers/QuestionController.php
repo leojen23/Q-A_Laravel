@@ -14,8 +14,8 @@ class QuestionController extends Controller
         $quizFactory = new QuizFactory(new EloquentQuizRepository(), new AnswerFactoryDirector(), new QuestionRepository());
 
         //créer le quizz
-        $quizFactory->getQuiz();
-
+       $quiz = $quizFactory->getQuiz();
+        dump($quiz);
     }
 
     public function displayRandom() {}

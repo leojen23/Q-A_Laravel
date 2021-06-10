@@ -8,7 +8,7 @@ use App\Quiz\Answer\Factories\AnswerTextFactory;
 class AnswerFactoryDirector
 {
 
-    public function getAnswerFactory($answer, $type):AnswerFactoryInterface
+    public function getAnswerFactory(array $answer, string $type):AnswerFactoryInterface
     {
         switch ($type) {
             case 'radio':
@@ -24,10 +24,5 @@ class AnswerFactoryDirector
                 return new AnswerTextFactory($answer);
                 break;
         }
-
-        //manière dynamique à implémenter plus tard
-        // $factoryClass = 'Answer'.ucfirst(strtolower($type)).'Factory';
-        // $factory = new $factoryClass();       
-        // return $factory;
     }
 }

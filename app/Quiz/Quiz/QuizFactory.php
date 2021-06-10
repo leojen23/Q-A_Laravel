@@ -37,10 +37,6 @@ class QuizFactory {
         
         $quizQuestions = [];
 
-<<<<<<< HEAD
-            //echo '<pre>' . var_export($preparedQuestion['answers'], true) . '</pre>';
-            $answers = [];
-=======
         //traitement différent car FileRepo renvoie le quizz groupé par question
         //alors que EloquentRepo renvoie réponse par réponse
         if (get_class($this->quizRepository) === FileQuizRepository::class) {
@@ -58,7 +54,6 @@ class QuizFactory {
                 $preparedQuestion['answers'] = $answers;
                 $quizQuestions [] = new Question($preparedQuestion, $this->questionRepository);
             }
->>>>>>> 3de41e05f9cd679dd541d637ed5121171bd2a2d2
 
         } elseif (get_class($this->quizRepository) === EloquentQuizRepository::class) {
 
@@ -67,8 +62,7 @@ class QuizFactory {
                 $answers = [];
                 
                 foreach($preparedQuestion['answers'] as $answer) {
-                    dump($answer);
-                    die();
+                    
                     $director = new AnswerFactoryDirector();
                     $AnswerFactory = $director->getAnswerFactory($answer, $preparedQuestion['type']);
                     $answers []= $AnswerFactory->getAnswer();
@@ -81,12 +75,7 @@ class QuizFactory {
         }
 
         
-<<<<<<< HEAD
-        //echo '<pre>' . var_export($quizQuestions, true) . '</pre>';
-        //echo '<pre>' . var_export(new Quiz($quizQuestions, $this->questionRepository), true) . '</pre>';
-=======
         // echo '<pre>' . var_export(new Quiz($quizQuestions, $this->questionRepository), true) . '</pre>';
->>>>>>> 3de41e05f9cd679dd541d637ed5121171bd2a2d2
         return new Quiz($quizQuestions, $this->questionRepository);
     }
     
