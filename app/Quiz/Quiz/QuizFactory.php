@@ -24,14 +24,7 @@ class QuizFactory {
 
     protected function createQuiz():Quiz
     {
-        // $repoFile = new FileQuizRepository('../questions.json');
-        // $questionsFile = $repoFile->fetch();
-        // dump($questionsFile);
-
-        // $repoEloquent = new EloquentQuizRepository();
-        // $questionsEloquent = $repoEloquent->fetch();
-        // die();
-
+        // we retrieved data from quizrepository and we instanciate a Quiz obejct
         $preparedQuestions = $this->quizRepository->fetch();
         
         $quizQuestions = [];

@@ -11,21 +11,15 @@ class QuestionController extends Controller
 {
     public function index () {
         //instancier Quiz Factory avec EloquentRepositories\QuizRepository
-        $quizFactory = new QuizFactory(new EloquentQuizRepository(), new AnswerFactoryDirector(), new QuestionRepository());
-
-        //créer le quizz
-        $quiz = $quizFactory->getQuiz();
-
-        $randomQuestion = $quiz->getRandomQuestion();
-
-        return view('question', ['questionLabel' => $randomQuestion->render(),
-                                'answers' =>  $randomQuestion->getAnswers()]);
-
+        $randomQuestionArray = $this->displayRandom();
+        return view('question', ['question' => $randomQuestionArray]);
     }
 
-    public function displayRandom() {
-        
+    protected function displayRandom() {
+        $quizFactory = new QuizFactory(new EloquentQuizRepository(), new AnswerFactoryDirector(), new QuestionRepository());
+        $quiz = $quizFactory->getQuiz();
+        $randomQuestion = $quiz->getRandomQuestion();
+        $randomQuestionArray = $randomQuestion->convertToArray();
+        return $randomQuestionArray ;
     }
 }
-    
-

@@ -108,8 +108,21 @@ class Question{
         return $answers;
     }
 
-    public function render() {
-        return $this->label;
+    public function convertToArray() {
+        
+        $answers = $this->answers;
+        $answersArray = [];
+            foreach($answers as $answer){
+                    // dump($answer->toArray());
+                    // die;
+                    
+            $answersArray [] = $answer->toArray();
+            }
+        return $questionArray [] = [
+            'label' => $this->label,
+            'type' => $this->type,
+            'answers' => $answersArray
+        ];
     }
 }
 
