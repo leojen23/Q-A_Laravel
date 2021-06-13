@@ -9,17 +9,18 @@ use App\Repositories\EloquentRepositories\QuestionRepository;
 
 class QuestionController extends Controller
 {
+    // this method retrieve the questionArray and sends it to the view
     public function index () {
-        //instancier Quiz Factory avec EloquentRepositories\QuizRepository
         $randomQuestionArray = $this->displayRandom();
         return view('question', ['question' => $randomQuestionArray]);
     }
 
+    //this method returns a random question array to be sent to the view/ we convert the question object to avoid dependencies.
     protected function displayRandom() {
         $quizFactory = new QuizFactory(new EloquentQuizRepository(), new AnswerFactoryDirector(), new QuestionRepository());
         $quiz = $quizFactory->getQuiz();
         $randomQuestion = $quiz->getRandomQuestion();
-        $randomQuestionArray = $randomQuestion->convertToArray();
+        $randomQuestionArray = $randomQuestion->toArray();
         return $randomQuestionArray ;
     }
 }

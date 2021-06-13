@@ -15,16 +15,15 @@ class Quiz
         $this->questionRepository = $questionRepository;
     }
 
+    // this method populates the database using the quiz data
     public function save():void
     {
         foreach ($this->questions as $question) {
-            // normalement pas besoin de cette ligne, car quand les questions arrivent
-            // depuis la factory, elles sont déjà instanciées en objet Question
-            // $question = new Question($preparedQuestion, $this->questionRepository);
             $question->save();
         }
     }
 
+    //this method return a random question 
     public function getRandomQuestion()
     {
        $randomIndex = array_rand($this->questions, 1);

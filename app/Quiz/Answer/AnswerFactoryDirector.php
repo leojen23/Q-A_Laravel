@@ -8,6 +8,7 @@ use App\Quiz\Answer\Factories\AnswerTextFactory;
 class AnswerFactoryDirector
 {
 
+    // the factory director return an instanciated AnswerFactory depending on the question type
     public function getAnswerFactory(array $answer, string $type):AnswerFactoryInterface
     {
         switch ($type) {

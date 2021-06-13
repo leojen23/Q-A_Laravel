@@ -14,6 +14,7 @@ class EloquentQuizRepository implements QuizRepositoryInterface
         $this->presenter = new QuizPresenter();
     }
 
+    // this method fetches data from database and sends it to the presenter present() method to be formatted
     public function fetch():array 
     {
         $questions = DB::table('questions')

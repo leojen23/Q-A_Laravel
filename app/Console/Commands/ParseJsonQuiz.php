@@ -2,8 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Quiz\Answer\AnswerFactoryDirector;
 use App\Quiz\Quiz\Quiz;
 use App\Quiz\Quiz\QuizFactory;
+use App\Repositories\EloquentRepositories\QuestionRepository;
 use App\Repositories\FileRepositories\FileQuizRepository;
 use Illuminate\Console\Command;
 
@@ -41,11 +43,11 @@ class ParseJsonQuiz extends Command
     public function handle()
     {
        /* return 0;*/
-        //1 ------ instancier la quiz factory (Afin de créer et gérer le quiz, celle-ci aura besoin de, File QuizRepository, QuestionRepository.)
-        $factory = new QuizFactory(new FileQuizRepository());
-        //2 ------ Créer le quiz, on récupére un tableau avec questions & réponses 
+        //1 ------ we instanciate a quiz factory
+        $factory = new QuizFactory(new FileQuizRepository(), new AnswerFactoryDirector(), new QuestionRepository);
+        //2 ------ we instanciate the quiz using the Factory's getQuiz() method
         $quiz = $factory->getQuiz();
-        //3 ------ appeler la fonction save() de quiz pour enregistrer en bdd
+        //3 ------ we populate the database using the quiz's save() method
         $quiz->save();
     }
 }

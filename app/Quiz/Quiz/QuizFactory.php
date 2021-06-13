@@ -24,9 +24,10 @@ class QuizFactory {
 
     protected function createQuiz():Quiz
     {
-        // we retrieved data from quizrepository and we instanciate a Quiz obejct
+        // we retrieve Question data susing the fect() method of the quiz repository that is passed to the quiz factory
         $preparedQuestions = $this->quizRepository->fetch();
         
+        // we initialize an empty array of questions that will be used as parameter to instanciate a new Quiz Object
         $quizQuestions = [];
 
         foreach($preparedQuestions as $preparedQuestion) {
@@ -34,15 +35,25 @@ class QuizFactory {
             $answers = [];
             
             foreach($preparedQuestion['answers'] as $answer) {
+
+                // We instanciate a new factory director
                 $director = new AnswerFactoryDirector();
+
+                //we call the Director's "getAnswerFactory()" method to instanciate the appropriate Answerfactory
                 $AnswerFactory = $director->getAnswerFactory($answer, $preparedQuestion['type']);
+
+                //we call the AnswerFactory's getAnswer() method to instanciate our Answers and push them into an empy array
                 $answers []= $AnswerFactory->getAnswer();
             }
 
+            // we assign our array of answer objects as the new value of our prepared questions answer key.
             $preparedQuestion['answers'] = $answers;
+
+            //we return a question object containing its answers objects
             $quizQuestions [] = new Question($preparedQuestion, $this->questionRepository);
         }
 
+        //we return a new Quiz object
         return new Quiz($quizQuestions, $this->questionRepository);
     }
     

@@ -21,7 +21,7 @@
         </style>
     </head>
 
-    <body class=" test">
+    <body>
 
         @if($question['type'] === 'text')
         <div>

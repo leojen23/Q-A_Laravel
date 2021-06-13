@@ -108,7 +108,8 @@ class Question{
         return $answers;
     }
 
-    public function convertToArray() {
+    // to a
+    public function toArray() {
         
         $answers = $this->answers;
         $answersArray = [];
